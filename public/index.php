@@ -3,19 +3,13 @@ declare(strict_types=1);
 
 require __DIR__ . '/../vendor/autoload.php';
 
-use Twig\Environment;
-use Twig\Loader\FilesystemLoader;
+use Core\Dispatcher;
+use Core\Router;
+use Core\View;
 
-$loader = new FilesystemLoader(__DIR__ . '/templates');
-$twig = new Environment($loader);
+$routes = require __DIR__ . '/../src/config/routes.php';
 
-$uri = $_SERVER['REQUEST_URI'];
+$track = new Router()->getTrack($routes, $_SERVER['REQUEST_URI']);
+$page = new Dispatcher()->getPage($track);
 
-if ($uri == '/')
-    echo $twig->render('home.html.twig', [
-        'title' => 'Home',
-    ]);
-else
-    echo $twig->render('404.html.twig', [
-        'title' => 'Error',
-    ]);
+echo new View(__DIR__ . '/templates')->render($page);
