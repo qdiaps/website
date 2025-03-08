@@ -8,10 +8,10 @@ class Router
     public function getTrack(array $routes, string $uri): Track|null
     {
         foreach ($routes as $route) {
-            if ($route->uri === $uri) {
+            if ($route->uri === $uri)
                 return new Track($route->controller, $route->action);
-            }
         }
+
         return null;
     }
 }
