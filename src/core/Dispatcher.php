@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Core;
 
 use App\Controllers\ErrorController;
-use Exception;
+use Throwable;
 
 class Dispatcher
 {
@@ -22,9 +22,8 @@ class Dispatcher
                 return $controller->{$track->action}();
             else
                 return new ErrorController()->actionNotFound();
-        } catch (Exception $e) {
-            echo $e->getMessage();
-            die();
+        } catch (Throwable $e) {
+            return new ErrorController()->exception($e->getMessage());
         }
     }
 }

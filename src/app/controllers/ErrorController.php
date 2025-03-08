@@ -12,13 +12,23 @@ class ErrorController extends Controller
     {
         return $this->createPage('404.html.twig', [
             'title' => 'Page not found',
+            'message' => 'The page you are looking for does not exist.'
         ]);
     }
 
     public function actionNotFound(): Page
     {
         return $this->createPage('404.html.twig', [
-            'title' => 'Action not found',
+            'title' => 'Error',
+            'message' => 'Action not found.'
+        ]);
+    }
+
+    public function exception(string $message): Page
+    {
+        return $this->createPage('404.html.twig', [
+            'title' => 'Error',
+            'message' => $message
         ]);
     }
 }
