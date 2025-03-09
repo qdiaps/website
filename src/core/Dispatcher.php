@@ -8,7 +8,7 @@ use Throwable;
 
 class Dispatcher
 {
-    public function getPage(Track|null $track): Page|null
+    public function getPage(?Track $track): ?Page
     {
         if ($track === null)
             return null;

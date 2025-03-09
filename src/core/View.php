@@ -17,7 +17,7 @@ class View
         $this->twig = new Environment($loader);
     }
 
-    public function render(Page|null $page): string
+    public function render(?Page $page): string
     {
         if ($page === null)
             return $this->renderError();

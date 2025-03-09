@@ -5,7 +5,7 @@ namespace Core;
 
 class Router
 {
-    public function getTrack(array $routes, string $uri): Track|null
+    public function getTrack(array $routes, string $uri): ?Track
     {
         foreach ($routes as $route) {
             if ($route->uri === $uri)
